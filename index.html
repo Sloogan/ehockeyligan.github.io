@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Ansökan</title>
+  <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div></div>
+    <img style="max-width: 200px;" src="./Image/Logga.png" alt="Logga">
+  
+    <div class="container">
+      
+      <form id="myForm">
+        <h2>Ansök Ditt Lag</h2>
+
+        <label for="dcname">Discord Namn:</label>
+        <input type="text" id="dcname" name="dcname" required>
+**(Obligatorisk)**
+
+        <label for="teamName">Lagnamn:</label>
+        <input type="text" id="teamName" name="teamName" required>
+**(Obligatorisk)**
+
+        <label for="teamColor">Lagfärg:</label>
+        <input type="color" id="teamColor" name="teamColor" required>
+        **Denna färg kommer att vara på discord rollen (Obligatorisk)**
+        
+
+        <label for="FullTeam">Är Ditt Lag Fullt?</label>
+        <input type="checkbox" id="FullTeam" name="FullTeam">
+        **Har du ett fullt lag redan?**
+        
+        <label for="logoInput">Lagets logotyp (länk):</label>
+        <input type="url" id="logoInput" name="logoInput">
+        **Detta måste vara en bild länk annars kommer inte ansökan fram**
+      
+        <button type="submit" onclick="submitForm()">Skicka</button>
+      </form>
+    </div>
+
+    <script>
+      function submitForm() {
+        event.preventDefault();
+        var request = new XMLHttpRequest();
+      request.open("POST", "https://discord.com/api/webhooks/1100153969231278101/oqeU257e5h6sN0rPG71EXvi5YpFmsHXuolDoG30RAL6x2as5WvVyG826-Ghl7GkGEYTZ");
+
+      const dcname = document.querySelector("#dcname").value;
+      const teamName = document.querySelector("#teamName").value;
+      const teamColor = document.querySelector("#teamColor").value;
+      const FullTeam = document.querySelector("#FullTeam").checked ? "Ja" : "Nej";
+      const logoInput = document.querySelector("#logoInput").value;
+
+      request.setRequestHeader('Content-type', 'application/json');
+
+      var now = new Date();
+      var params = {
+  username: "Ansökan",
+  avatar_url: "https://cdn.discordapp.com/attachments/1100145215530090596/1100340357553721416/Logga.png",
+  embeds: [{
+    color: 0x0099ff,
+    title: "Anmälan",
+    description: "📝 Ny ansökan har kommit in!",
+    fields: [
+      {
+        name: "👥 Lagnamn:",
+        value: teamName,
+      },
+      {
+        name: "🎨 Lagfärg:",
+        value: teamColor,
+      },
+      {
+        name: "👾 Discord Användarnamn:",
+        value: dcname,
+      },
+      {
+        name: "🔍 Fullständig Laguppställning:",
+        value: FullTeam,
+      }
+    ],
+    image: {
+              url: logoInput
+            },
+            timestamp: new Date()
+  }]
+}
+
+      request.send(JSON.stringify(params));
+    }
+    </script>
+  </body>
+</html>

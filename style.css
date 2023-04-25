@@ -1,0 +1,115 @@
+@font-face {
+  font-family: Open;
+  src: url(OpenSans-Bold.ttf);
+}
+
+/* Stil för länkar */
+a {
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+/* Färgade element */
+.header {
+  background-color: #0F2F47;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+html {
+  background: url(Image/Namnlöst-1-Återställd.png);
+  font-family: Open;
+}
+
+form {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+label {
+  font-size: 16px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: white;
+}
+
+button[type="submit"] {
+  padding: 10px;
+  background-color: #4285f4;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkgreen;
+}
+
+#FullTeam {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+#FullTeam::before,
+#FullTeam::after {
+  position: absolute;
+  content: '';
+  background-color: transparent;
+}
+
+#FullTeam::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+#FullTeam::after {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #007bff;
+  transition: all 0.2s;
+}
+
+input[type="checkbox"]:checked + #FullTeam::after {
+  transform: translate(-50%, -50%) scale(1);
+}
